@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WealthGrow Labs - Empowering Your Business Growth</title>
+    <!-- Tailwind CSS CDN for easy styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display for headings, Inter for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Apply Inter font globally for body text */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Apply Playfair Display for headings */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Elegant and Eye-Catching Color Palette */
+        .bg-primary-dark { background-color: #2C3E50; } /* Deep Slate Blue/Charcoal */
+        .text-primary-dark { color: #2C3E50; }
+        .bg-accent-gold { background-color: #B8860B; } /* Dark Goldenrod - Elegant Accent */
+        .text-accent-gold { color: #B8860B; }
+        .bg-background-light { background-color: #FDFDFD; } /* Near white, slightly warm */
+        .bg-card-background { background-color: #FFFFFF; } /* Pure white for crisp cards */
+        .text-dark-grey { color: #333333; } /* Dark grey for main text */
+
+        /* Carousel specific styles */
+        .review-carousel-container {
+            position: relative;
+            overflow: hidden; /* Hide overflowing reviews */
+        }
+        .review-card {
+            display: none; /* Hide all by default, JS will show one */
+            animation: fadeIn 0.8s ease-in-out; /* Smooth fade-in effect */
+        }
+        .review-card.active {
+            display: block; /* Show the active review */
+        }
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(184, 134, 11, 0.7); /* Accent Gold with transparency */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            line-height: 1;
+            transition: background-color 0.3s ease;
+            z-index: 10;
+        }
+        .carousel-button:hover {
+            background-color: #A0780A; /* Darker gold on hover */
+        }
+        .carousel-button.prev {
+            left: 10px;
+        }
+        .carousel-button.next {
+            right: 10px;
+        }
+        .carousel-dots {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .dot.active {
+            background-color: #B8860B; /* Accent Gold */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-background-light text-dark-grey flex flex-col min-h-screen">
+
+    <!-- Header Section -->
+    <header class="bg-primary-dark text-white p-4 shadow-md">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <!-- Logo Placeholder -->
+            <div class="flex items-center mb-4 md:mb-0">
+                <img src="https://placehold.co/60x60/2C3E50/FFFFFF?text=WG+Logo" alt="WealthGrow Labs Logo" class="rounded-full mr-3 shadow-md">
+            </div>
+            <nav>
+                <ul class="flex flex-wrap justify-center space-x-4">
+                    <li><a href="#home" class="hover:text-gray-300 transition duration-300 ease-in-out p-2 rounded-md hover:bg-primary-dark-lighter">Home</a></li>
+                    <li><a href="#why-va" class="hover:text-gray-300 transition duration-300 ease-in-out p-2 rounded-md hover:bg-primary-dark-lighter">Why a VA?</a></li>
+                    <li><a href="#about" class="hover:text-gray-300 transition duration-300 ease-in-out p-2 rounded-md hover:bg-primary-dark-lighter">About Us</a></li>
+                    <li><a href="#services" class="hover:text-gray-300 transition duration-300 ease-in-out p-2 rounded-md hover:bg-primary-dark-lighter">Services</a></li>
+                    <li><a href="#success" class="hover:text-gray-300 transition duration-300 ease-in-out p-2 rounded-md hover:bg-primary-dark-lighter">Success Stories</a></li>
+                    <li><a href="#reviews" class="hover:text-gray-300 transition duration-300 ease-in-out p-2 rounded-md hover:bg-primary-dark-lighter">Client Reviews</a></li>
+                    <li><a href="#booking" class="hover:text-gray-300 transition duration-300 ease-in-out p-2 rounded-md hover:bg-primary-dark-lighter">Book a Call</a></li>
+                    <li><a href="#contact" class="hover:text-gray-300 transition duration-300 ease-in-out p-2 rounded-md hover:bg-primary-dark-lighter">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="container mx-auto p-6 flex-grow">
+        <!-- Hero Section -->
+        <section id="home" class="bg-card-background p-8 rounded-lg shadow-lg mb-8 text-center">
+            <h2 class="text-4xl font-extrabold text-accent-gold mb-4">Empower Your Business Growth with Expert Virtual Assistant Solutions</h2>
+            <p class="text-lg text-dark-grey mb-6">
+                WealthGrow Labs provides dedicated virtual assistant services to streamline your operations, boost productivity, and help you focus on what truly matters for your business's expansion.
+            </p>
+            <button class="bg-accent-gold hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-300 ease-in-out hover:scale-105">
+                Explore Our Solutions
+            </button>
+        </section>
+
+        <!-- Why Do You Need a Virtual Assistant Section -->
+        <section id="why-va" class="bg-primary-dark p-8 rounded-lg shadow-lg mb-8 text-white">
+            <h2 class="text-3xl font-bold text-white mb-6 text-center">Why Do You Need a Virtual Assistant?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-accent-gold mb-3">Focus on Core Business</h3>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        As a business owner, your time is your most valuable asset. Delegating administrative, marketing, or operational tasks to a virtual assistant frees you from time-consuming duties, allowing you to concentrate on strategic planning, innovation, and direct revenue-generating activities. This shift in focus is crucial for sustainable growth and achieving your long-term vision.
+                    </p>
+                    <h3 class="text-xl font-semibold text-accent-gold mb-3">Cost-Effective Solution</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Hiring a full-time employee comes with significant overheads: salaries, benefits, office space, and equipment. A virtual assistant agency offers a flexible, cost-efficient alternative. You pay only for the hours worked or the specific projects completed, eliminating many of these expenses while still gaining access to top-tier expertise.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-accent-gold mb-3">Access to Specialized Expertise</h3>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        Our virtual assistants bring diverse skill sets, from advanced project management and SEO to CRM optimization and content creation. Instead of hiring multiple specialists, you gain a versatile partner capable of handling a wide range of tasks with professional proficiency. This broad expertise ensures high-quality output across all your business functions.
+                    </p>
+                    <h3 class="text-xl font-semibold text-accent-gold mb-3">Increased Efficiency & Productivity</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Virtual assistants are experts in streamlining processes and implementing efficient workflows. By taking over repetitive or complex tasks, they enhance your operational efficiency, reduce bottlenecks, and boost overall productivity. This leads to faster project completion, improved service delivery, and a more agile business model.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="bg-card-background p-8 rounded-lg shadow-lg mb-8">
+            <h2 class="text-3xl font-bold text-accent-gold mb-4">About Us</h2>
+            <div class="flex flex-col md:flex-row items-center md:space-x-8">
+                <img src="https://placehold.co/300x200/2C3E50/FFFFFF?text=Our+Team+Photo" alt="WealthGrow Labs Team Photo" class="w-full md:w-1/3 rounded-lg shadow-md mb-4 md:mb-0">
+                <div class="md:w-2/3">
+                    <p class="text-dark-grey leading-relaxed mb-4">
+                        At WealthGrow Labs, we are a team of passionate and highly organized Virtual Assistants dedicated to helping entrepreneurs and businesses thrive. Based in the Philippines, our collective brings extensive experience in various domains including sales, client relations, project management, digital marketing, and business operations. Our mission is to free up your valuable time by handling your administrative and strategic tasks, allowing you to focus on core business growth and innovation. Partner with WealthGrow Labs to achieve your business objectives efficiently and effectively!
+                    </p>
+                    <a href="[Link to WealthGrow Labs Team Portfolio/Brochure]" target="_blank" class="inline-block bg-accent-gold hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-full shadow-lg transform transition duration-300 ease-in-out hover:scale-105">
+                        Learn More About Our Team
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="bg-card-background p-8 rounded-lg shadow-lg mb-8">
+            <h2 class="text-3xl font-bold text-accent-gold mb-6 text-center">Our Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service Card 1: Executive Administrative Support -->
+                <div class="bg-background-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">Executive Administrative Support</h3>
+                    <p class="text-dark-grey">
+                        We provide high-level administrative assistance including complex calendar management, executive email filtering, meticulous document preparation, and comprehensive virtual office management. This allows executives and business owners to dedicate their focus entirely to strategic decision-making and high-impact activities.
+                    </p>
+                </div>
+                <!-- Service Card 2: Strategic Sales & Business Development -->
+                <div class="bg-background-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">Strategic Sales & Business Development</h3>
+                    <p class="text-dark-grey">
+                        Our team assists with targeted lead generation, advanced CRM pipeline management, sales forecasting, and personalized client outreach strategies. We help optimize your sales funnel, ensuring consistent growth and robust revenue streams.
+                    </p>
+                </div>
+                <!-- Service Card 3: Advanced Client Relationship Management -->
+                <div class="bg-background-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">Advanced Client Relationship Management</h3>
+                    <p class="text-dark-grey">
+                        We manage the full client lifecycle from seamless onboarding to proactive communication and issue resolution. Our focus is on building lasting client loyalty, enhancing satisfaction, and fostering positive long-term relationships that drive repeat business and referrals.
+                    </p>
+                </div>
+                <!-- Service Card 4: Comprehensive Project & Operations Management -->
+                <div class="bg-background-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">Comprehensive Project & Operations Management</h3>
+                    <p class="text-dark-grey">
+                        Our experts oversee project planning, task delegation, timeline adherence, budget tracking, and performance reporting. We ensure your projects are delivered on time and within scope, optimizing operational efficiency and achieving desired outcomes.
+                    </p>
+                </div>
+                <!-- Service Card 5: SEO & Digital Marketing Strategy -->
+                <div class="bg-background-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">SEO & Digital Marketing Strategy</h3>
+                    <p class="text-dark-grey">
+                        We develop and implement robust SEO strategies, conduct in-depth keyword research, perform technical SEO audits, and optimize content for maximum search engine visibility. This drives organic traffic, enhances online presence, and positions your brand as an industry leader.
+                    </p>
+                </div>
+                <!-- Service Card 6: Social Media Marketing & Engagement -->
+                <div class="bg-background-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">Social Media Marketing & Engagement</h3>
+                    <p class="text-dark-grey">
+                        Our team crafts engaging social media content, manages posting schedules, runs targeted ad campaigns, and actively engages with your online community. We build brand awareness, drive traffic, and convert followers into loyal customers.
+                    </p>
+                </div>
+                <!-- Service Card 7: CRM System Implementation & Optimization -->
+                <div class="bg-background-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">CRM System Implementation & Optimization</h3>
+                    <p class="text-dark-grey">
+                        We specialize in setting up, customizing, and optimizing CRM platforms to perfectly fit your business processes. This ensures efficient data management, streamlined workflows, and actionable insights for improved customer relations and sales performance.
+                    </p>
+                </div>
+                <!-- Service Card 8: Email Marketing Automation & Campaigns -->
+                <div class="bg-background-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">Email Marketing Automation & Campaigns</h3>
+                    <p class="text-dark-grey">
+                        We design, execute, and analyze high-impact email marketing campaigns, including automation sequences, newsletters, and promotional emails. This nurtures leads, drives conversions, and builds strong customer relationships through personalized communication.
+                    </p>
+                </div>
+                <!-- Service Card 9: Comprehensive Calendar & Schedule Management -->
+                <div class="bg-background-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">Comprehensive Calendar & Schedule Management</h3>
+                    <p class="text-dark-grey">
+                        We meticulously manage complex calendars, coordinate meetings across time zones, handle appointment scheduling, and set critical reminders. This ensures optimal time utilization, reduces scheduling conflicts, and enhances overall productivity for you and your team.
+                    </p>
+                </div>
+                <!-- Service Card 10: Business Travel & Logistics Coordination -->
+                <div class="bg-background-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">Business Travel & Logistics Coordination</h3>
+                    <p class="text-dark-grey">
+                        We expertly plan and coordinate all aspects of business travel, including flight and accommodation bookings, ground transportation, and detailed itinerary creation. This ensures seamless, stress-free trips, allowing you to focus on your business objectives.
+                    </p>
+                </div>
+                <!-- Service Card 11: Professional Presentation & Report Design -->
+                <div class="bg-background-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">Professional Presentation & Report Design</h3>
+                    <p class="text-dark-grey">
+                        Our designers create impactful and visually stunning presentations, reports, and pitch decks that effectively convey your message. High-quality visuals enhance your credibility and ensure your ideas resonate with your audience.
+                    </p>
+                </div>
+                <!-- Service Card 12: Data Analytics & Reporting -->
+                <div class="bg-background-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">Data Analytics & Reporting</h3>
+                    <p class="text-dark-grey">
+                        We collect, analyze, and present key business data in clear, actionable reports. This provides valuable insights into your performance, helps identify trends, and supports data-driven decision-making for strategic growth.
+                    </p>
+                </div>
+                 <!-- Service Card 13: E-commerce Support -->
+                <div class="bg-background-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">E-commerce Support</h3>
+                    <p class="text-dark-grey">
+                        From product listing and inventory management to order processing and customer service for online stores, we help streamline your e-commerce operations. This ensures smooth sales and satisfied customers.
+                    </p>
+                </div>
+                <!-- Service Card 14: Market Research & Competitive Analysis -->
+                <div class="bg-background-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">Market Research & Competitive Analysis</h3>
+                    <p class="text-dark-grey">
+                        We conduct in-depth market research and analyze competitors to provide you with valuable insights. This helps you identify new opportunities, understand market trends, and make informed strategic decisions.
+                    </p>
+                </div>
+                <!-- Service Card 15: Content Writing & Copyediting -->
+                <div class="bg-background-light p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">Content Writing & Copyediting</h3>
+                    <p class="text-dark-grey">
+                        Our team creates compelling blog posts, website copy, articles, and marketing materials, ensuring high quality and error-free content. This strengthens your brand voice and effectively communicates your message.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Client Success Statistics Section -->
+        <section id="success" class="bg-primary-dark p-8 rounded-lg shadow-lg mb-8 text-white">
+            <h2 class="text-3xl font-bold text-white mb-6 text-center">Client Success at a Glance</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-card-background p-6 rounded-lg shadow-md">
+                    <p class="text-5xl font-extrabold text-accent-gold">98%</p>
+                    <p class="text-lg text-dark-grey">Client Satisfaction Rate</p>
+                </div>
+                <div class="bg-card-background p-6 rounded-lg shadow-md">
+                    <p class="text-5xl font-extrabold text-accent-gold">40%</p>
+                    <p class="text-lg text-dark-grey">Average Efficiency Gain for Clients</p>
+                </div>
+                <div class="bg-card-background p-6 rounded-lg shadow-md">
+                    <p class="text-5xl font-extrabold text-accent-gold">200+</p>
+                    <p class="text-lg text-dark-grey">Successful Client Engagements</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Client Reviews Section with Carousel -->
+        <section id="reviews" class="bg-card-background p-8 rounded-lg shadow-lg mb-8">
+            <h2 class="text-3xl font-bold text-accent-gold mb-6 text-center">What Our Clients Say</h2>
+            <div class="review-carousel-container relative max-w-3xl mx-auto">
+                <!-- Navigation Buttons -->
+                <button class="carousel-button prev" onclick="plusReviews(-1)">&#10094;</button>
+                <button class="carousel-button next" onclick="plusReviews(1)">&#10095;</button>
+
+                <!-- Review Cards -->
+                <div class="review-card bg-background-light p-6 rounded-lg shadow-md border-l-4 border-accent-gold">
+                    <div class="flex items-center mb-4">
+                        <img src="https://placehold.co/80x80/B8860B/FFFFFF?text=Client1" alt="Client Photo 1" class="rounded-full w-20 h-20 object-cover mr-4 shadow-md">
+                        <div>
+                            <p class="italic text-dark-grey mb-2">"WealthGrow Labs transformed our operations. Their team's efficiency and dedication are truly remarkable. We've seen significant improvements in productivity and our workflow is smoother than ever!"</p>
+                            <p class="font-semibold text-dark-grey">- Sarah Chen, Tech Startup CEO</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card bg-background-light p-6 rounded-lg shadow-md border-l-4 border-accent-gold">
+                    <div class="flex items-center mb-4">
+                        <img src="https://placehold.co/80x80/B8860B/FFFFFF?text=Client2" alt="Client Photo 2" class="rounded-full w-20 h-20 object-cover mr-4 shadow-md">
+                        <div>
+                            <p class="italic text-dark-grey mb-2">"The digital marketing support from WealthGrow Labs has been invaluable. Our online presence has grown exponentially, leading to more leads and sales. They truly understand our brand!"</p>
+                            <p class="font-semibold text-dark-grey">- David Lee, E-commerce Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card bg-background-light p-6 rounded-lg shadow-md border-l-4 border-accent-gold">
+                    <div class="flex items-center mb-4">
+                        <img src="https://placehold.co/80x80/B8860B/FFFFFF?text=Client3" alt="Client Photo 3" class="rounded-full w-20 h-20 object-cover mr-4 shadow-md">
+                        <div>
+                            <p class="italic text-dark-grey mb-2">"Their project management expertise kept our complex initiatives on track and within budget, even with tight deadlines. WealthGrow Labs is an essential partner for our business's strategic goals."</p>
+                            <p class="font-semibold text-dark-grey">- Maria Garcia, Consulting Firm Partner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card bg-background-light p-6 rounded-lg shadow-md border-l-4 border-accent-gold">
+                    <div class="flex items-center mb-4">
+                        <img src="https://placehold.co/80x80/B8860B/FFFFFF?text=Client4" alt="Client Photo 4" class="rounded-full w-20 h-20 object-cover mr-4 shadow-md">
+                        <div>
+                            <p class="italic text-dark-grey mb-2">"The professional and proactive support from WealthGrow Labs has allowed us to scale our client services effectively. They anticipate our needs and deliver beyond expectations. Highly recommend their comprehensive solutions."</p>
+                            <p class="font-semibold text-dark-grey">- Tom Wilson, Financial Advisor</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card bg-background-light p-6 rounded-lg shadow-md border-l-4 border-accent-gold">
+                    <div class="flex items-center mb-4">
+                        <img src="https://placehold.co/80x80/B8860B/FFFFFF?text=Client5" alt="Client Photo 5" class="rounded-full w-20 h-20 object-cover mr-4 shadow-md">
+                        <div>
+                            <p class="italic text-dark-grey mb-2">"We've seen a remarkable improvement in our administrative efficiency since partnering with WealthGrow Labs. Their attention to detail and ability to manage complex tasks has been a huge asset."</p>
+                            <p class="font-semibold text-dark-grey">- Alex Kim, Startup Founder</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carousel Dots -->
+                <div class="carousel-dots" id="carousel-dots">
+                    <!-- Dots will be generated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Calendar Section -->
+        <section id="booking" class="bg-primary-dark p-8 rounded-lg shadow-lg mb-8 text-center text-white">
+            <h2 class="text-3xl font-bold text-white mb-4">Schedule a Free Consultation with WealthGrow Labs</h2>
+            <p class="text-lg text-gray-300 mb-6">
+                Ready to discuss how our virtual assistant solutions can transform your business? Schedule a free 30-minute consultation call with our team.
+            </p>
+            <div class="bg-card-background p-6 rounded-lg shadow-md max-w-xl mx-auto">
+                <p class="text-dark-grey italic">
+                    [Placeholder for your Booking Calendar Embed Code]<br>
+                    You can embed a calendar from services like Calendly, Acuity Scheduling, or Google Calendar here.
+                    Simply replace this text with the embed code provided by your chosen booking platform.
+                </p>
+                <a href="#" class="inline-block mt-6 bg-accent-gold hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-300 ease-in-out hover:scale-105">
+                    Book Your Consultation
+                </a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="bg-card-background p-8 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold text-accent-gold mb-4 text-center">Get in Touch with WealthGrow Labs</h2>
+            <form class="max-w-md mx-auto">
+                <div class="mb-4">
+                    <label for="name" class="block text-dark-grey text-sm font-bold mb-2">Name:</label>
+                    <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-dark-grey leading-tight focus:outline-none focus:shadow-outline focus:border-accent-gold" placeholder="Your Name">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-dark-grey text-sm font-bold mb-2">Email:</label>
+                    <input type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-dark-grey leading-tight focus:outline-none focus:shadow-outline focus:border-accent-gold" placeholder="your.email@example.com">
+                </div>
+                <div class="mb-6">
+                    <label for="message" class="block text-dark-grey text-sm font-bold mb-2">Message:</label>
+                    <textarea id="message" name="message" rows="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-dark-grey leading-tight focus:outline-none focus:shadow-outline focus:border-accent-gold" placeholder="Your message..."></textarea>
+                </div>
+                <div class="flex items-center justify-center">
+                    <button type="submit" class="bg-accent-gold hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline shadow-md transform transition duration-300 ease-in-out hover:scale-105">
+                        Send Message
+                    </button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-white p-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 WealthGrow Labs. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        let reviewIndex = 0;
+        let reviewInterval; // Variable to hold the interval ID
+
+        // Function to show a specific review
+        function showReview(n) {
+            let reviews = document.getElementsByClassName("review-card");
+            let dots = document.getElementsByClassName("dot");
+
+            // Handle wrapping around the ends
+            if (n >= reviews.length) { reviewIndex = 0; }
+            if (n < 0) { reviewIndex = reviews.length - 1; }
+
+            // Hide all reviews and deactivate all dots
+            for (let i = 0; i < reviews.length; i++) {
+                reviews[i].classList.remove('active');
+            }
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove('active');
+            }
+
+            // Show the current review and activate its dot
+            reviews[reviewIndex].classList.add('active');
+            dots[reviewIndex].classList.add('active');
+        }
+
+        // Function to move to the next/previous review
+        function plusReviews(n) {
+            reviewIndex += n;
+            showReview(reviewIndex);
+            resetInterval(); // Reset interval on manual navigation
+        }
+
+        // Function to jump to a specific review via dots
+        function currentReview(n) {
+            reviewIndex = n;
+            showReview(reviewIndex);
+            resetInterval(); // Reset interval on manual navigation
+        }
+
+        // Function to start the automatic slideshow
+        function startSlideshow() {
+            reviewInterval = setInterval(() => {
+                reviewIndex++;
+                showReview(reviewIndex);
+            }, 5000); // Change review every 5 seconds
+        }
+
+        // Function to reset the slideshow interval
+        function resetInterval() {
+            clearInterval(reviewInterval);
+            startSlideshow();
+        }
+
+        // Initialize carousel on page load
+        window.onload = function() {
+            // Generate dots dynamically based on the number of review cards
+            let reviews = document.getElementsByClassName("review-card");
+            let dotsContainer = document.getElementById("carousel-dots");
+            for (let i = 0; i < reviews.length; i++) {
+                let dot = document.createElement("span");
+                dot.classList.add("dot");
+                dot.onclick = function() { currentReview(i); };
+                dotsContainer.appendChild(dot);
+            }
+
+            showReview(reviewIndex); // Show the first review
+            startSlideshow(); // Start automatic rotation
+        };
+    </script>
+</body>
+</html>
